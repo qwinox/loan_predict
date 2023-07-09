@@ -63,7 +63,10 @@ def predict(input):
 
 st.title("Модель предсказания возможности получения займа")
 
-user_input = st.text_input("Введите текст", "Введите описание изображения")
+text_input = []
+
+text_input.append(1.0 if st.text_input("Введите текст", "Введите описание изображения").lower() == 'мужчина' else 0.0)
+st.write("Gender",  text_input[0])
 
 button_pressed = st.button("Распознать")
 
