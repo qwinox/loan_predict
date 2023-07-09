@@ -65,10 +65,6 @@ st.title("Модель предсказания возможности полу�
 
 text_input = []
 
-       feature_cols= ['Gender', 'Married', 'Dependents', 'Education',
-              'Self_Employed', 'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount',
-              'Loan_Amount_Term', 'Credit_History', 'Property_Area']
-
 text_input.append(1.0 if st.text_input("Введите пол?", "Нужно ввести Мужчина или Женщина").lower() == 'мужчина' else 0.0)
 text_input.append(1.0 if st.text_input("Состоите в браке?", "Нужно ввести Да или Нет").lower() == 'да' else 0.0)
 text_input.append(st.text_input("Сколько у Вас детей?", "Нужно ввести количестов"))
