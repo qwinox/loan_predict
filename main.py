@@ -46,6 +46,14 @@ def predict(input):
        
        # fig, ax = plt.subplots(figsize=(20, 10))
        # tree.plot_tree(clf, fontsize=10, filled=True, rounded=True)
+
+       np.random.seed(42)
+
+       clf = DecisionTreeClassifier(criterion='gini')
+       clf = clf.fit(X_train, y_train)
+       y_pred = clf.predict(X_test)
+       
+       r2 = accuracy_score(y_test, y_pred)
        
        model = BaggingClassifier(clf)
        model.fit(X_train, y_train)
