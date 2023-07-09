@@ -69,4 +69,4 @@ button_pressed = st.button("Распознать")
 
 if button_pressed:
        user_input = pd.DataFrame({'Gender' : [1], 'Married' : 	[0], 'Dependents' : [0], 'Education' : 	[0], 'Self_Employed' : 	[0], 'ApplicantIncome' : [5849], 'CoapplicantIncome' :	[0.0], 'LoanAmount' : [146.412162], 'Loan_Amount_Term' :	[360.0], 'Credit_History' : [1.0], 'Property_Area' : [2]})
-       st.write("Класс изображения:", predict(user_input))
+       st.write("Класс изображения:", predict(user_input)[0])
