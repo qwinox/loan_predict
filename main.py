@@ -75,13 +75,28 @@ text_input[6] = st.text_input("Какой у Вашего созаявителя
 text_input[7] = st.text_input("Cколько рублей вы хотели бы взять?", "Нужно ввести количестов")
 text_input[8] = st.text_input("На сколько дней хотели бы взять займ?", "Нужно ввести количестов")
 text_input[9] = (1.0 if st.text_input("Есть ли у Вас кредитная история?", "Нужно ввести Да или Нет").lower() == 'Да' else 0.0)
-text_input[10] = (1.0 if st.text_input("Где вы проживаете?", "В городе, селе или в посёлке городского типа").lower() == 'Да' else 0.0)
+text_input[10] = st.text_input("Где вы проживаете?", "В городе, селе или в посёлке городского типа").lower()
 
 button_pressed = st.button("Рассчитать возможность получения займа")
 
 if button_pressed:
-       user_input = pd.DataFrame({'Gender' : [1], 'Married' : [0], 'Dependents' : [0], 'Education' : [0], 'Self_Employed' : [0], 'ApplicantIncome' : [5849], 
-                                  'CoapplicantIncome' : [0.0], 'LoanAmount' : [146.412162], 'Loan_Amount_Term' : [360.0], 'Credit_History' : [1.0], 'Property_Area' : [2]})
+       text_input[2] = int(text_input[2])
+       text_input[5] = float(text_input[5]) * 12 / 91.26
+       text_input[6] = float(text_input[6]) * 12 / 91.26
+       text_input[7] = float(text_input[7])/ 91.26
+
+       if text_input[10] == "город":
+              text_input[10] = 2
+       elif text_input[10] == "село":
+              text_input[10] = 0
+       else:
+              text_input[10] = 1
+              
+       
+       user_input = pd.DataFrame({'Gender' : [text_input[0]], 'Married' : [text_input[1]], 'Dependents' : [text_input[2]], 'Education' : [text_input[3]], 
+                                  'Self_Employed' : [text_input[4]], 'ApplicantIncome' : [text_input[5]], 
+                                  'CoapplicantIncome' : [text_input[6]], 'LoanAmount' : [text_input[7]], 
+                                  'Loan_Amount_Term' : [text_input[8]], 'Credit_History' : [text_input[9]], 'Property_Area' : [text_input[10]]})
 
        if predict(user_input)[0] == 1:
               st.subheader("Модель одобрила Вам займ!")
@@ -89,5 +104,5 @@ if button_pressed:
        else:
               st.subheader("Модель выявила, что по какому-то из показателей вы нежелательный заёмщик")
 
-       st.write("Введённые вами данные")
+       st.write("Введённые вами данные:")
        st.write(user_input)
