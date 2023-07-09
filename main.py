@@ -87,7 +87,7 @@ if button_pressed:
        st.write(user_input)
        
        if predict(user_input)[0] == 1:
-              st.write("Модель одобрила Вам займ!")
+              st.subheader("Модель одобрила Вам займ!")
               st.balloons()
        else:
-              st.write("Модель выявила, что по какому-то из показателей вы нежелательный заёмщик")
+              st.subheader("Модель выявила, что по какому-то из показателей вы нежелательный заёмщик")
