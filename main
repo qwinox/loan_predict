@@ -1,3 +1,5 @@
+import streamlit as st
+
 import os
 import pandas as pd
 import numpy as np
@@ -67,5 +69,8 @@ graph = pypi.graphviz.graph_from_dot_data(dot_data)
 
 Image(graph.create_png())
 
+st.title("Модель предсказания возможности получения займа")
+
 user_input = pd.DataFrame({'Gender' : [1], 'Married' : 	[0], 'Dependents' : [0], 'Education' : 	[0], 'Self_Employed' : 	[0], 'ApplicantIncome' : [5849], 'CoapplicantIncome' :	[0.0], 'LoanAmount' : [146.412162], 'Loan_Amount_Term' :	[360.0], 'Credit_History' : [1.0], 'Property_Area' : [2]})
-print(model.predict(user_input))
+model.predict(user_input)
+st.write("Класс изображения:", model.predict(user_input)[0])
