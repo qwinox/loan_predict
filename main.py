@@ -80,14 +80,14 @@ text_input[10] = (1.0 if st.text_input("Где вы проживаете?", "В 
 button_pressed = st.button("Рассчитать возможность получения займа")
 
 if button_pressed:
-       st.write("Gender",  text_input)
        user_input = pd.DataFrame({'Gender' : [1], 'Married' : [0], 'Dependents' : [0], 'Education' : [0], 'Self_Employed' : [0], 'ApplicantIncome' : [5849], 
                                   'CoapplicantIncome' : [0.0], 'LoanAmount' : [146.412162], 'Loan_Amount_Term' : [360.0], 'Credit_History' : [1.0], 'Property_Area' : [2]})
 
-       st.write(user_input)
-       
        if predict(user_input)[0] == 1:
               st.subheader("Модель одобрила Вам займ!")
               st.balloons()
        else:
               st.subheader("Модель выявила, что по какому-то из показателей вы нежелательный заёмщик")
+
+       st.write("Введённые вами данные")
+       st.write(user_input)
