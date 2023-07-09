@@ -66,10 +66,10 @@ st.title("Модель предсказания возможности полу�
 text_input = []
 
 text_input.append(1.0 if st.text_input("Введите текст", "Введите описание изображения").lower() == 'мужчина' else 0.0)
-st.write("Gender",  text_input[0])
 
 button_pressed = st.button("Распознать")
 
 if button_pressed:
+       st.write("Gender",  text_input[0])
        user_input = pd.DataFrame({'Gender' : [1], 'Married' : 	[0], 'Dependents' : [0], 'Education' : 	[0], 'Self_Employed' : 	[0], 'ApplicantIncome' : [5849], 'CoapplicantIncome' :	[0.0], 'LoanAmount' : [146.412162], 'Loan_Amount_Term' :	[360.0], 'Credit_History' : [1.0], 'Property_Area' : [2]})
        st.write("Класс изображения:", predict(user_input)[0])
