@@ -67,12 +67,12 @@ text_input = []
 
 text_input.append(1.0 if st.text_input("Введите пол?", "Нужно ввести Мужчина или Женщина").lower() == 'мужчина' else 0.0)
 text_input.append(1.0 if st.text_input("Состоите в браке?", "Нужно ввести Да или Нет").lower() == 'да' else 0.0)
-text_input.append(st.text_input("Сколько у Вас детей?", "Нужно ввести количестов"))
+text_input.append(int(st.text_input("Сколько у Вас детей?", "Нужно ввести количестов")))
 text_input.append(1.0 if st.text_input("Есть ли у Вас высшее образование?", "Нужно ввести Да или Нет").lower() == 'Да' else 0.0)
 text_input.append(1.0 if st.text_input("Вы самозанятый?", "Нужно ввести Да или Нет").lower() == 'да' else 0.0)
-text_input.append(st.text_input("Какой у Вас месячный доход в рублях?", "Нужно ввести количестов") * 12 // 91.26 )
-text_input.append(st.text_input("Какой у Вашего созаявителя месячный доход в рублях?", "Нужно ввести количестов") * 12 // 91.26)
-text_input.append(st.text_input("На сколько дней хотели бы взять займ?", "Нужно ввести количестов"))
+text_input.append(float(st.text_input("Какой у Вас месячный доход в рублях?", "Нужно ввести количестов")) * 12 // 91.26 )
+text_input.append(float(st.text_input("Какой у Вашего созаявителя месячный доход в рублях?", "Нужно ввести количестов")) * 12 // 91.26)
+text_input.append(float(st.text_input("На сколько дней хотели бы взять займ?", "Нужно ввести количестов")))
 text_input.append(1.0 if st.text_input("Есть ли у Вас кредитная история?", "Нужно ввести Да или Нет").lower() == 'Да' else 0.0)
 text_input.append(1.0 if st.text_input("Где вы проживаете?", "В городе, селе или в посёлке городского типа").lower() == 'Да' else 0.0)
 
