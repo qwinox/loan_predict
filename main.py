@@ -81,9 +81,9 @@ button_pressed = st.button("Рассчитать возможность полу
 
 if button_pressed:
        text_input[2] = int(text_input[2])
-       text_input[5] = float(text_input[5]) * 12 / 91.26
-       text_input[6] = float(text_input[6]) * 12 / 91.26
-       text_input[7] = float(text_input[7])/ 91.26
+       text_input[5] = float(text_input[5]) * 12 // 91.26
+       text_input[6] = float(text_input[6]) * 12 // 91.26
+       text_input[7] = float(text_input[7]) // 91.26
 
        if text_input[10] == "город":
               text_input[10] = 2
