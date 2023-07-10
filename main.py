@@ -69,43 +69,65 @@ options = ['Мужчина', 'Женщина']
 text_input[0] = st.selectbox('Ваш пол?', options)
 text_input[0] = (1.0 if text_input[0].lower() == 'мужчина' else 0.0)
 
-text_input[1] = (1.0 if st.text_input("Состоите в браке?", "Нужно ввести Да или Нет").lower() == 'да' else 0.0)
+options = ['Да', 'Нет']
+text_input[1] = st.selectbox("Состоите в браке?", options)
+text_input[1] = (1.0 if text_input[0].lower() == 'да' else 0.0)
+
 text_input[2] = st.text_input("Сколько у Вас детей?", "Нужно ввести количестов")
-text_input[3] = (1.0 if st.text_input("Есть ли у Вас высшее образование?", "Нужно ввести Да или Нет").lower() == 'да' else 0.0)
-text_input[4] = (1.0 if st.text_input("Вы самозанятый?", "Нужно ввести Да или Нет").lower() == 'да' else 0.0)
+
+options = ['Да', 'Нет']
+text_input[3] = st.selectbox("Есть ли у Вас высшее образование?", options)
+text_input[3] = (1.0 if text_input[0].lower() == 'да' else 0.0)
+
+options = ['Да', 'Нет']
+text_input[4] = st.selectbox("Вы самозанятый?", options)
+text_input[4] = (1.0 if text_input[0].lower() == 'да' else 0.0)
+
+
 text_input[5] = st.text_input("Какой у Вас месячный доход в рублях?", "Нужно ввести количестов")
 text_input[6] = st.text_input("Какой у Вашего созаявителя месячный доход в рублях?", "Нужно ввести количестов")
 text_input[7] = st.text_input("Cколько рублей вы хотели бы взять?", "Нужно ввести количестов")
 text_input[8] = st.text_input("На сколько дней хотели бы взять займ?", "Нужно ввести количестов")
-text_input[9] = (1.0 if st.text_input("Есть ли у Вас кредитная история?", "Нужно ввести Да или Нет").lower() == 'да' else 0.0)
-text_input[10] = st.text_input("Где вы проживаете?", "Город, село или в посёлок городского типа").lower()
+
+options = ['Да', 'Нет']
+text_input[9] = st.selectbox("Есть ли у Вас кредитная история?", options)
+text_input[9] = (1.0 if text_input[0].lower() == 'да' else 0.0)
+
+
+options = ['Город', 'Село', "Посёлок городского типа"]
+text_input[10] = st.selectbox("Где вы проживаете?", options)
+
+if text_input[10] == "город":
+       text_input[10] = 2
+elif text_input[10] == "село":
+       text_input[10] = 0
+else:
+       text_input[10] = 1
 
 button_pressed = st.button("Рассчитать возможность получения займа")
 
 if button_pressed:
-       text_input[2] = int(text_input[2])
-       text_input[5] = float(text_input[5]) * 12 // 91.26
-       text_input[6] = float(text_input[6]) * 12 // 91.26
-       text_input[7] = float(text_input[7]) // 91.26
-
-       if text_input[10] == "город":
-              text_input[10] = 2
-       elif text_input[10] == "село":
-              text_input[10] = 0
-       else:
-              text_input[10] = 1
-              
+       if text_input[2].isdigit() and text_input[5].isdigit() and text_input[6].isdigit() and text_input[7].isdigit():
+              text_input[2] = int(text_input[2])
+              text_input[5] = float(text_input[5]) * 12 // 91.26
+              text_input[6] = float(text_input[6]) * 12 // 91.26
+              text_input[7] = float(text_input[7]) // 91.26
        
-       user_input = pd.DataFrame({'Gender' : [text_input[0]], 'Married' : [text_input[1]], 'Dependents' : [text_input[2]], 'Education' : [text_input[3]], 
-                                  'Self_Employed' : [text_input[4]], 'ApplicantIncome' : [text_input[5]], 
-                                  'CoapplicantIncome' : [text_input[6]], 'LoanAmount' : [text_input[7]], 
-                                  'Loan_Amount_Term' : [text_input[8]], 'Credit_History' : [text_input[9]], 'Property_Area' : [text_input[10]]})
-
-       if predict(user_input)[0] == 1:
-              st.subheader("Модель одобрила Вам займ!")
-              st.balloons()
+       
+                     
+              
+              user_input = pd.DataFrame({'Gender' : [text_input[0]], 'Married' : [text_input[1]], 'Dependents' : [text_input[2]], 'Education' : [text_input[3]], 
+                                         'Self_Employed' : [text_input[4]], 'ApplicantIncome' : [text_input[5]], 
+                                         'CoapplicantIncome' : [text_input[6]], 'LoanAmount' : [text_input[7]], 
+                                         'Loan_Amount_Term' : [text_input[8]], 'Credit_History' : [text_input[9]], 'Property_Area' : [text_input[10]]})
+       
+              if predict(user_input)[0] == 1:
+                     st.subheader("Модель одобрила Вам займ!")
+                     st.balloons()
+              else:
+                     st.subheader("Модель выявила, что по какому-то из показателей вы нежелательный заёмщик")
        else:
-              st.subheader("Модель выявила, что по какому-то из показателей вы нежелательный заёмщик")
+              st.subheader("В поля ввода текст данные введены неправильно")
 
        st.write("Введённые вами данные:")
        st.write(user_input)
