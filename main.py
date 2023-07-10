@@ -71,17 +71,17 @@ text_input[0] = (1.0 if text_input[0].lower() == 'мужчина' else 0.0)
 
 options = ['Да', 'Нет']
 text_input[1] = st.selectbox("Состоите в браке?", options)
-text_input[1] = (1.0 if text_input[0].lower() == 'да' else 0.0)
+text_input[1] = (1.0 if text_input[1].lower() == 'да' else 0.0)
 
 text_input[2] = st.text_input("Сколько у Вас детей?", "Нужно ввести количестов")
 
 options = ['Да', 'Нет']
 text_input[3] = st.selectbox("Есть ли у Вас высшее образование?", options)
-text_input[3] = (1.0 if text_input[0].lower() == 'да' else 0.0)
+text_input[3] = (1.0 if text_input[3].lower() == 'да' else 0.0)
 
 options = ['Да', 'Нет']
 text_input[4] = st.selectbox("Вы самозанятый?", options)
-text_input[4] = (1.0 if text_input[0].lower() == 'да' else 0.0)
+text_input[4] = (1.0 if text_input[4].lower() == 'да' else 0.0)
 
 
 text_input[5] = st.text_input("Какой у Вас месячный доход в рублях?", "Нужно ввести количестов")
@@ -91,7 +91,7 @@ text_input[8] = st.text_input("На сколько дней хотели бы в
 
 options = ['Да', 'Нет']
 text_input[9] = st.selectbox("Есть ли у Вас кредитная история?", options)
-text_input[9] = (1.0 if text_input[0].lower() == 'да' else 0.0)
+text_input[9] = (1.0 if text_input[9].lower() == 'да' else 0.0)
 
 
 options = ['Город', 'Село', "Посёлок городского типа"]
